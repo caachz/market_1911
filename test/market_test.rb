@@ -103,6 +103,7 @@ class MarketTest < Minitest::Test
   end
 
   def test_it_returns_a_list_of_all_items_sold_at_the_market_in_alphabetical_order
+
     market = Market.new("South Pearl Street Farmers Market")
 
     item1 = Item.new({name: 'Peach', price: "$0.75"})
