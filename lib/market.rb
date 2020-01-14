@@ -24,13 +24,13 @@ class Market
   end
 
   def sorted_item_list
-    names = @vendors.reduce([]) do |acc, vendor|
+    item_names = @vendors.reduce([]) do |acc, vendor|
       vendor.inventory.each do |item, amount|
-        acc << item.name
+        acc << item.name if !acc.include?(item.name)
       end
       acc
     end
-    names.uniq.sort
+    item_names.sort
   end
 
   def total_inventory
@@ -59,7 +59,6 @@ class Market
         amount -= 1
       end
     end
-
     enough
   end
 end
