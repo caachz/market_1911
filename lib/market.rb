@@ -41,4 +41,25 @@ class Market
       acc
     end
   end
+
+  def has_enough?(item, amount)
+    return true if total_inventory[item] >= amount
+    false
+  end
+
+  def sell(item, amount)
+    enough = has_enough?(item, amount)
+    return false if !enough
+
+    all_vendors = vendors_that_sell(item)
+
+    result = all_vendors.map do |vendor|
+      until amount == 0 || vendor.inventory[item] == 0
+        vendor.inventory[item] -= 1
+        amount -= 1
+      end
+    end
+
+    enough
+  end
 end
